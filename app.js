@@ -23,6 +23,15 @@ let currentPoll = {
     scoreB: 0,
 };
 
+// findByName(name, array) {
+//   // return the correct object (FOR MUSHROOM GAME)
+//   for (let item of array) {
+//     if (item.name === name) {
+//       return item;
+//     }
+//   }
+// };
+
 pollForm.addEventListener('submit', (e) => {
     //prevent default form behavior 
     e.preventDefault();
