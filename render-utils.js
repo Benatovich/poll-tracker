@@ -4,14 +4,15 @@
 // PURE FUNCTIONS
 export function renderPoll(poll) {
     const pollDiv = document.createElement('div');
+    const questionEl = document.createElement('p');
     const optionADiv = renderOption(poll.nameA, poll.scoreA);
-    // ^I'm tempted to do this with pollA.name instead of poll.nameA but this should be easier for now
     const optionBDiv = renderOption(poll.nameB, poll.scoreB);
 
-    pollDiv.append(optionADiv, optionBDiv);
-
     pollDiv.classList.add('poll');
-
+    questionEl.textContent = poll.question;
+    
+    pollDiv.append(optionADiv, optionBDiv);
+    
     return pollDiv;
 }
 

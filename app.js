@@ -8,20 +8,33 @@ const optionAAddButton = document.getElementById('option-a-add-button');
 const optionBAddButton = document.getElementById('option-b-add-button');
 const optionARemoveButton = document.getElementById('option-a-remove-button');
 const optionBRemoveButton = document.getElementById('option-b-remove-button');
+
 const closePollButton = document.getElementById('close-poll-button');
-const questionLabel = document.getElementById('poll-question');
-const optionALabel = document.getElementById('option-a');
-const optionBLabel = document.getElementById('option-b');
+const questionEl = document.getElementById('poll-question');
+// const optionATitleEl = document.getElementById('option-a');
+// const optionBTitleEl = document.getElementById('option-b');
+const optionATitleEl = document.getElementById('option-a-title');
+const optionBTitleEl = document.getElementById('option-b-title');
+const optionAVotesEl = document.getElementById('option-a-votes');
+const optionBVotesEl = document.getElementById('option-b-votes');
+
+const pastPollsEl = document.getElementsByClassName('past-polls');
 
 // let state
+let question = '';
+let optionAVotes = 0;
+let optionBVotes = 0;
+let optionATitle = 0;
+let optionBTitle = 0;
+
 const pastPollsArray = [];
-let currentPoll = {
-    question: '',
-    nameA: '',
-    nameB: '',
-    scoreA: 0,
-    scoreB: 0,
-};
+// let currentPoll = {
+//     question: '',
+//     nameA: '',
+//     nameB: '',
+//     scoreA: 0,
+//     scoreB: 0,
+// };
 
 // findByName(name, array) {
 //   // return the correct object (FOR MUSHROOM GAME)
@@ -38,13 +51,13 @@ pollForm.addEventListener('submit', (e) => {
     // get the name data from the form
     const data = new FormData(pollForm);
     // set state to this data from the form
-    const question = data.get('question');
-    const nameA = data.get('option-a');
-    const nameB = data.get('option-b');
+    question = data.get('booger-question');
+    optionATitle = data.get('booger-option-a');
+    optionBTitle = data.get('booger-option-b');
 
     currentPoll.question = question;
-    currentPoll.nameA = nameA;
-    currentPoll.nameB = nameB;
+    currentPoll.optionATitle = optionATitle;
+    currentPoll.optionBTitle = optionBTitle;
     // reset the form values
     pollForm.reset();
     displayCurrentPoll();
@@ -68,29 +81,28 @@ optionBRemoveButton.addEventListener('click', () => {
 });
 
 closePollButton.addEventListener('click', () => {
+    // clear out the form
+    pollForm.reset();
+    const poll = makePoll();
     // add the current poll to an array of polls in state
-    pastPollsArray.push(currentPoll);
-    displayAllPolls();
+    pastPollsArray.push(poll);
     // reset the initial state to start with a new form
-    currentPoll = {
-        question: '',
-        nameA: '',
-        nameB: '',
-        scoreA: 0,
-        scoreB: 0,
-    };
+    resetState();
+
     displayCurrentPoll();
+    
+    displayAllPolls();
 });
 
 function displayCurrentPoll() {
   // clear out the current poll div
     currentPollEl.textContent = '';
     // change the label to show the question
-    questionLabel.textContent = currentPoll.question;
+    questionEl.textContent = currentPoll.question;
     // change the label to show option A
-    optionALabel.textContent = currentPoll.nameA;
+    optionATitleEl.textContent = currentPoll.optionATitle;
     // change the label to show option B
-    optionBLabel.textContent = currentPoll.nameB;
+    optionBTitleEl.textContent = currentPoll.optionBTitle;
     // call the render poll function to create a poll element
     const pollEl = renderPoll(currentPoll);
     pollEl.classList.add('current');
