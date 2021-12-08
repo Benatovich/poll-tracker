@@ -35,6 +35,8 @@ export function renderOption(name, score) {
 // IMPURE FUNCTIONS
 
 export function displayCurrentPoll() {
+    // clear out the current poll div
+    currentPollEl
 
 }
 
