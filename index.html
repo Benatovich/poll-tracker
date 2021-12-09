@@ -40,20 +40,21 @@
                     </form>
 
                     <div class="vote-change-buttons">
-                        <div class="option-a-buttons">
-                            <button id="option-a-add-button">Add Vote for Option A</button>
-                            <button id="option-a-remove-button">Remove Vote for Option A</button>
+                        <div>
+                            <div>
+                                <button id="option-a-add-button">Vote Option A</button>
+                                <button id="option-b-add-button">Vote Option B</button>
+                            </div>
+                            <div>
+                                <button id="option-a-undo-button">Undo Option A</button>
+                                <button id="option-b-undo-button">Undo Option B</button>
+                            </div>
                         </div>
-                        <div class="option-b-buttons">
-                            <button id="option-b-add-button">Add Vote for Option B</button>
-                            <button id="option-b-remove-button">Remove Vote for Option B</button>
-                        </div>
+                        <button id="close-poll-button">Close Poll</button>
                     </div>
-                    <button id="close-poll-button">Close Poll</button>
                 </div>
                 <div class="right">
                     <p>Current Poll</p>
-                    <div id="current-poll-container">
                         <p id="poll-question"></p>
                         <div class="options">
                             <div id="option-a">
@@ -65,16 +66,13 @@
                                 <p id="option-b-votes"></p>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
             
             <div class="bottom">
                 <h3>Past Polls</h3>
-                <div class="past-polls">
-                    <div id="past-polls-container">
-                        
-                    </div>
+                <div id="past-polls-container">
+                
                 </div>
             </div>
 

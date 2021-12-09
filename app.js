@@ -5,8 +5,8 @@ const pollForm = document.getElementById('poll-form');
 
 const optionAAddButton = document.getElementById('option-a-add-button');
 const optionBAddButton = document.getElementById('option-b-add-button');
-const optionARemoveButton = document.getElementById('option-a-remove-button');
-const optionBRemoveButton = document.getElementById('option-b-remove-button');
+const optionAUndoButton = document.getElementById('option-a-undo-button');
+const optionBUndoButton = document.getElementById('option-b-undo-button');
 
 const closePollButton = document.getElementById('close-poll-button');
 const questionEl = document.getElementById('poll-question');
@@ -38,12 +38,12 @@ optionBAddButton.addEventListener('click', () => {
 
     optionBVotesEl.textContent = optionBVotes;
 });
-optionARemoveButton.addEventListener('click', () => {
+optionAUndoButton.addEventListener('click', () => {
     optionAVotes--;
 
     optionAVotesEl.textContent = optionAVotes;
 });
-optionBRemoveButton.addEventListener('click', () => {
+optionBUndoButton.addEventListener('click', () => {
     optionBVotes--;
 
     optionBVotesEl.textContent = optionBVotes;
