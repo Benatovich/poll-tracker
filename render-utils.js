@@ -1,49 +1,59 @@
-//  optionATitle = '';
-//     optionBTitle = '';
-//     optionAVotes = 0;
-//     optionBVotes = 0;
+let optionATitle = '';
+let optionBTitle = '';
+let optionAVotes = 0;
+let optionBVotes = 0;
 
 
 // PURE FUNCTIONS
+export function renderOption(title, votes) {
+    const container = document.createElement('div');
+    const titleEl = document.createElement('p');
+    const votesEl = document.createElement('p');
+
+    container.classList.add('option');
+    titleEl.textContent = title;
+    votesEl.textContent = votes;
+
+    container.append(titleEl, votesEl);
+
+    return container;
+}
+
 export function renderPoll(poll) {
-    const pollDiv = document.createElement('div');
+    const container = document.createElement('div');
     const questionEl = document.createElement('p');
-    const optionADiv = renderOption(poll.nameA, poll.scoreA);
-    const optionBDiv = renderOption(poll.nameB, poll.scoreB);
-
-    pollDiv.classList.add('poll');
+    const optionADiv = document.createElement('div');
+    const optionBDiv = document.createElement('div');    
+    
+    container.classList.add('poll');
     questionEl.textContent = poll.question;
+    optionADiv.textContent = renderOption(optionATitle, optionAVotes);
+    optionBDiv.textContent = renderOption(optionBTitle, optionBVotes);
     
-    pollDiv.append(optionADiv, optionBDiv);
+    container.append(questionEl, optionADiv, optionBDiv);
     
-    return pollDiv;
+    return container;
 }
 
-export function renderOption(name, score) {
-    const optionDiv = document.createElement('div');
-    const nameDiv = document.createElement('p');
-    const scoreDiv = document.createElement('p');
+export function renderPastPoll(pastPoll) {
+    const container = document.createElement('div');
+    const pQuestionEl = document.createElement('p');
+    const pTitleA = document.createElement('p');
+    const pTitleB = document.createElement('p');
+    const pVotesA = document.createElement('p');
+    const pVotesB = document.createElement('p');
 
-    optionDiv.classList.add('option');
-    nameDiv.classList.add('name');
-    scoreDiv.classList.add('score');
+    container.classList.add('past-poll');
+    pQuestionEl.textContent = pastPoll.question;
+    pTitleA.textContent = pastPoll.optionATitle;
+    pTitleB.textContent = pastPoll.optionBTitle;
+    pVotesA.textContent = pastPoll.optionAVotes;
+    pVotesB.textContent = pastPoll.optionBVotes;
 
-    nameDiv.textContent = name;
-    scoreDiv.textContent = score;
+    container.append(pQuestionEl, pTitleA, pTitleB, pVotesA, pVotesB);
 
-    optionDiv.append(nameDiv, scoreDiv);
-
-    return optionDiv;
+    return container;
 }
 
-// IMPURE FUNCTIONS
-
-export function displayCurrentPoll() {
-    // clear out the current poll div
-    currentPollEl
-
-}
-
-export function displayAllPolls() {
-
-}
+    // const optionADiv = renderOption(optionATitle, optionAVotes);
+    // const optionBDiv = renderOption(optionBTitle, optionBVotes);

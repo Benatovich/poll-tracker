@@ -1,8 +1,5 @@
 // import functions and grab DOM elements
-import { renderOption, renderPoll } from './render-utils.js';
-
-const currentPollEl = document.getElementById('current-poll-container');
-const pastPollsEl = document.getElementById('past-polls-container');
+import { renderOption, renderPoll, renderPastPoll } from './render-utils.js';
 
 const pollForm = document.getElementById('poll-form');
 
@@ -19,6 +16,8 @@ const optionBTitleEl = document.getElementById('option-b-title');
 const optionAVotesEl = document.getElementById('option-a-votes');
 const optionBVotesEl = document.getElementById('option-b-votes');
 
+const pastPollsEl = document.getElementById('past-polls-container');
+
 // let state
 let question = '';
 let optionATitle = '';
@@ -28,7 +27,7 @@ let optionBVotes = 0;
 
 const pastPollsArray = [];
 
-
+// event listeners
 optionAAddButton.addEventListener('click', () => {
     optionAVotes++;
 
@@ -135,6 +134,5 @@ function displayAllPolls() {
 //     }
   
   // render and append a past poll for each past poll in state
-}
 
 displayCurrentPoll();
