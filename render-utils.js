@@ -1,5 +1,8 @@
-// Q: can I put all of my functions here?
-// A: can anyone stop me...?
+//  optionATitle = '';
+//     optionBTitle = '';
+//     optionAVotes = 0;
+//     optionBVotes = 0;
+
 
 // PURE FUNCTIONS
 export function renderPoll(poll) {
