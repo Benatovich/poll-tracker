@@ -54,6 +54,3 @@ export function renderPastPoll(pastPoll) {
 
     return container;
 }
-
-    // const optionADiv = renderOption(optionATitle, optionAVotes);
-    // const optionBDiv = renderOption(optionBTitle, optionBVotes);

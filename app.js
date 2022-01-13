@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-import { renderOption, renderPoll, renderPastPoll } from './render-utils.js';
+import { renderPoll } from './render-utils.js';
 
 const pollForm = document.getElementById('poll-form');
 
@@ -16,7 +16,7 @@ const optionBTitleEl = document.getElementById('option-b-title');
 const optionAVotesEl = document.getElementById('option-a-votes');
 const optionBVotesEl = document.getElementById('option-b-votes');
 
-const pastPollsEl = document.getElementById('past-polls-container');
+const pollsEl = document.getElementById('polls-container');
 
 // let state
 let question = '';
@@ -25,7 +25,7 @@ let optionBTitle = '';
 let optionAVotes = 0;
 let optionBVotes = 0;
 
-const pastPollsArray = [];
+const pollsArray = [];
 
 // event listeners
 optionAAddButton.addEventListener('click', () => {
@@ -67,7 +67,7 @@ closePollButton.addEventListener('click', () => {
     pollForm.reset();
     const poll = makePoll();
     // add the current poll to an array of polls in state
-    pastPollsArray.push(poll);
+    pollsArray.push(poll);
     // reset the initial state to start with a new form
     resetState();
 
@@ -113,26 +113,24 @@ function displayCurrentPoll() {
 // currentPollEl.append(pollEl);
 
 function displayAllPolls() {
-    pastPollsEl.textContent = '';
+    pollsEl.textContent = '';
     
-    for (let pastPoll of pastPollsArray) {
-        const container = renderPastPoll(pastPoll);
+    for (let poll of pollsArray) {
+        const container = renderPoll(poll);
         
-        pastPollsEl.append(container);
+        pollsEl.append(container);
     }
 }
 
 // OLD VERSION:
 // function displayAllPolls() {
-//   // clear out past polls list in the DOM
 //     pastPollsEl.textContent = '';
-//   // loop through the past polls in state
-//     for (let poll of pastPollsArray) {
-//         const pollEl = renderPoll(poll);
-//         pollEl.classList.add('past');
-//         pastPollsEl.append(pollEl);
+    
+//     for (let pastPoll of pollsArray) {
+//         const container = renderPastPoll(pastPoll);
+        
+//         pastPollsEl.append(container);
 //     }
-  
-  // render and append a past poll for each past poll in state
+// }
 
 displayCurrentPoll();
