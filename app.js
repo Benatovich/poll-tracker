@@ -11,42 +11,42 @@ const optionBUndoButton = document.getElementById('option-b-undo-button');
 const closePollButton = document.getElementById('close-poll-button');
 const questionEl = document.getElementById('poll-question');
 
-const optionATitleEl = document.getElementById('option-a-title');
-const optionBTitleEl = document.getElementById('option-b-title');
-const optionAVotesEl = document.getElementById('option-a-votes');
-const optionBVotesEl = document.getElementById('option-b-votes');
+const titleAEl = document.getElementById('option-a-title');
+const titleBEl = document.getElementById('option-b-title');
+const votesAEl = document.getElementById('option-a-votes');
+const votesBEl = document.getElementById('option-b-votes');
 
 const pollsEl = document.getElementById('polls-container');
 
 // let state
 let question = '';
-let optionATitle = '';
-let optionBTitle = '';
-let optionAVotes = 0;
-let optionBVotes = 0;
+let titleA = '';
+let titleB = '';
+let votesA = 0;
+let votesB = 0;
 
 const pollsArray = [];
 
 // event listeners
 optionAAddButton.addEventListener('click', () => {
-    optionAVotes++;
+    votesA++;
 
-    optionAVotesEl.textContent = optionAVotes;
+    votesAEl.textContent = votesA;
 });
 optionBAddButton.addEventListener('click', () => {
-    optionBVotes++;
+    votesB++;
 
-    optionBVotesEl.textContent = optionBVotes;
+    votesBEl.textContent = votesB;
 });
 optionAUndoButton.addEventListener('click', () => {
-    optionAVotes--;
+    votesA--;
 
-    optionAVotesEl.textContent = optionAVotes;
+    votesAEl.textContent = votesA;
 });
 optionBUndoButton.addEventListener('click', () => {
-    optionBVotes--;
+    votesB--;
 
-    optionBVotesEl.textContent = optionBVotes;
+    votesBEl.textContent = votesB;
 });
 
 pollForm.addEventListener('submit', (e) => {
@@ -56,8 +56,8 @@ pollForm.addEventListener('submit', (e) => {
     const data = new FormData(pollForm);
     // set state to this data from the form
     question = data.get('booger-question');
-    optionATitle = data.get('booger-option-a');
-    optionBTitle = data.get('booger-option-b');
+    titleA = data.get('booger-option-a');
+    titleB = data.get('booger-option-b');
 
     displayCurrentPoll();
 });
@@ -79,31 +79,31 @@ closePollButton.addEventListener('click', () => {
 function makePoll() {
     return {
         question: question,
-        optionATitle: optionATitle,
-        optionBTitle: optionBTitle,
-        optionAVotes: optionAVotes,
-        optionBVotes: optionBVotes,
+        titleA: titleA,
+        titleB: titleB,
+        votesA: votesA,
+        votesB: votesB,
     };
 }
 
 function resetState() {
     question = '';
-    optionATitle = '';
-    optionBTitle = '';
-    optionAVotes = 0;
-    optionBVotes = 0;
+    titleA = '';
+    titleB = '';
+    votesA = 0;
+    votesB = 0;
 }
 
 function displayCurrentPoll() {
     // change the label to show the question
     questionEl.textContent = question;
     // change the label to show option A
-    optionATitleEl.textContent = optionATitle;
+    titleAEl.textContent = titleA;
     // change the label to show option B
-    optionBTitleEl.textContent = optionBTitle;
+    titleBEl.textContent = titleB;
 
-    optionAVotesEl.textContent = optionAVotes;
-    optionBVotesEl.textContent = optionBVotes;
+    votesAEl.textContent = votesA;
+    votesBEl.textContent = votesB;
 }
 
 // // call the render poll function to create a poll element
@@ -114,11 +114,13 @@ function displayCurrentPoll() {
 
 function displayAllPolls() {
     pollsEl.textContent = '';
-    
+
     for (let poll of pollsArray) {
-        const container = renderPoll(poll);
+        const pollEl = renderPoll(poll);
         
-        pollsEl.append(container);
+        pollEl.classList.add('past');
+
+        pollsEl.append(pollEl);
     }
 }
 
