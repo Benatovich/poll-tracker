@@ -1,7 +1,7 @@
-let optionATitle = '';
-let optionBTitle = '';
-let optionAVotes = 0;
-let optionBVotes = 0;
+// let optionATitle = '';
+// let optionBTitle = '';
+// let optionAVotes = 0;
+// let optionBVotes = 0;
 
 
 // PURE FUNCTIONS
@@ -11,6 +11,9 @@ export function renderOption(title, votes) {
     const votesEl = document.createElement('p');
 
     container.classList.add('option');
+    titleEl.classList.add('title');
+    votesEl.classList.add('votes');
+
     titleEl.textContent = title;
     votesEl.textContent = votes;
 
@@ -22,13 +25,10 @@ export function renderOption(title, votes) {
 export function renderPoll(poll) {
     const container = document.createElement('div');
     const questionEl = document.createElement('p');
-    const optionADiv = document.createElement('div');
-    const optionBDiv = document.createElement('div');    
+    const optionADiv = renderOption(poll.titleA, poll.votesA);
+    const optionBDiv = renderOption(poll.titleB, poll.votesB);    
     
-    container.classList.add('poll');
     questionEl.textContent = poll.question;
-    optionADiv.textContent = renderOption(optionATitle, optionAVotes);
-    optionBDiv.textContent = renderOption(optionBTitle, optionBVotes);
     
     container.append(questionEl, optionADiv, optionBDiv);
     
@@ -54,6 +54,3 @@ export function renderPastPoll(pastPoll) {
 
     return container;
 }
-
-    // const optionADiv = renderOption(optionATitle, optionAVotes);
-    // const optionBDiv = renderOption(optionBTitle, optionBVotes);
